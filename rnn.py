@@ -6,14 +6,14 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 
-def gen_data(size=100000):
+def gen_data(size=1000000):
     X = np.array(np.random.choice(2, size=(size,)))
     Y = []
     for i in range(size):
         threshold = 0.5
-        if X[i-3] == 1:
+        if X[i-2] == 1:
             threshold += 0.5
-        if X[i-8] == 1:
+        if X[i-4] == 1:
             threshold -= 0.25
         if np.random.rand() > threshold:
             Y.append(0)
@@ -46,11 +46,11 @@ def gen_epochs(n, num_steps):
         yield gen_batch(gen_data(), batch_size, num_steps=num_steps)
 
 
-batch_size = 3
+batch_size = 5
 num_classes = 2
-state_size = 10
+state_size = 5
 num_steps = 10
-learning_rate = 0.2
+learning_rate = 0.05
 
 x = tf.placeholder(tf.int32, [batch_size, num_steps], name='input_placeholder')
 y = tf.placeholder(tf.int32, [batch_size, num_steps], name='labels_placeholder')
