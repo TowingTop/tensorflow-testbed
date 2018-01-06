@@ -119,14 +119,3 @@ def train_network(num_epochs, num_steps, state_size, verbose=True):
 train_losses = train_network(5, num_steps, state_size)
 plt.plot(train_losses)
 plt.show()
-
-
-
-
-
-
-
-
-
-
-
